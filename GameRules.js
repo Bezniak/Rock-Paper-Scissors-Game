@@ -20,7 +20,12 @@ class GameRules {
 
     determineWinner(playerMove, computerMove) {
         if (playerMove === computerMove) return "Draw";
-        return this.rules[playerMove].includes(computerMove) ? "Player" : "Computer";
+
+        // Проверяем, является ли ход компьютера "слабым" для хода игрока
+        if (this.rules[playerMove].includes(computerMove)) return "Computer";
+
+        // В противном случае, ход компьютера является "сильным", и игрок побеждает
+        return "Player";
     }
 }
 
